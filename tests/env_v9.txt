@@ -1,0 +1,74 @@
+# Скопируй в .env и заполни. Строки с пустым значением — необязательные.
+
+# ---------- Kaiten ----------
+KAITEN_BASE_URL=https://ВАШ-ДОМЕН.kaiten.ru/api/latest
+KAITEN_TOKEN=real-token-abc
+# Ссылка на карточку без id в конце (открой любую карточку и скопируй адрес до id)
+KAITEN_CARD_URL_PREFIX=https://ВАШ-ДОМЕН.kaiten.ru/space/ID_ПРОСТРАНСТВА/card/
+# Твой id: GET /api/latest/users/current
+MY_KAITEN_USER_ID=
+# Колонка «В работе»: GET /api/latest/boards/<id доски> -> columns
+IN_WORK_COLUMN_ID=
+# Колонка «Очередь», откуда брать заявки (можно несколько через запятую).
+# Карточки в «Ждём ответа», «Проблемные» и других колонках сервис не трогает
+QUEUE_COLUMN_IDS=11
+# Нужен, только если «В работе» на другой доске
+IN_WORK_BOARD_ID=
+# Поле карточки с Telegram автора заявки — просто название, как в Kaiten (или id вида id_123).
+# Если поле пустое, сервис ищет автора в config/employees.json
+AUTHOR_TG_FIELD=Ваш телеграм
+# Поле с Telegram клиента (например «Telegram ученика/учителя»). Пусто = клиентам не пишем
+CLIENT_TG_FIELD=
+
+# ---------- SLA ----------
+# Если у карточки нет срока, SLA = столько минут с момента взятия
+SLA_MINUTES=240
+# Напомнить, когда прошла такая доля времени (0.8 = 80%)
+SLA_WARN_SHARE=0.8
+
+# ---------- Как писать с корпоративного аккаунта ----------
+# business = официальный Telegram Business (нужен Premium), userbot = сессия аккаунта через Telethon
+TRANSPORT=business
+# Для business: токен ОТДЕЛЬНОГО бота из @BotFather (не того, что отвечает по базе знаний)
+BUSINESS_BOT_TOKEN=
+# Для userbot: https://my.telegram.org -> API development tools
+USERBOT_API_ID=
+USERBOT_API_HASH=
+USERBOT_SESSION=data/corp_account
+TELEGRAM_API_BASE=https://api.telegram.org
+
+# ---------- Уведомления лично тебе ----------
+# Бот, который пишет тебе (можно тот же, что в BUSINESS_BOT_TOKEN — тогда оставь пустым)
+ALERT_BOT_TOKEN=
+# Твой chat_id (узнать: написать боту @userinfobot). Сначала нажми /start у бота уведомлений
+ALERT_CHAT_ID=
+
+# ---------- «Человечность» ----------
+TZ_NAME=Asia/Bishkek
+# Вне этого времени сообщения ждут начала следующего рабочего дня
+WORK_HOURS=09:00-18:00
+# Рабочие дни: 1=пн … 7=вс
+WORK_DAYS=1-5
+# Пауза перед первым сообщением, секунды (случайно в этом диапазоне)
+HUMAN_DELAY_MIN_S=40
+HUMAN_DELAY_MAX_S=150
+# Скорость «набора» в символах в секунду (статус «печатает…» держится text/скорость секунд)
+TYPING_CPS_MIN=4
+TYPING_CPS_MAX=7
+
+# ---------- Сервис ----------
+# Как сервис узнаёт о новых заявках.
+# По умолчанию сам проверяет «Очередь» раз в N секунд — права администратора Kaiten и
+# внешний адрес НЕ нужны. Не чаще раза в 10 секунд. 0 = выключить опрос.
+POLL_INTERVAL_S=30
+# Необязательно: вебхук (нужны права админа пространства). Длинная случайная строка от 12 символов;
+# адрес вебхука: https://твой-сервер/kaiten/<WEBHOOK_SECRET>. Пусто = вебхук выключен
+WEBHOOK_SECRET=
+DB_PATH=data/state.db
+# Тексты комментария в Kaiten и сообщений — в config/messages.json (правятся без перезапуска)
+EMPLOYEES_FILE=config/employees.json
+MESSAGES_FILE=config/messages.json
+HOST=0.0.0.0
+PORT=8080
+# true = ничего не отправлять в Telegram, только писать в лог (для первого запуска)
+DRY_RUN=false

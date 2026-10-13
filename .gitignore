@@ -1,0 +1,10 @@
+.env
+data/
+*.session
+*.session-journal
+*.db
+__pycache__/
+.pytest_cache/
+config/employees.json
+.venv/
+config/team.json

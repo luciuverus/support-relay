@@ -1,0 +1,11 @@
+services:
+  support-relay:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/srv/data
+      # вся папка, а не отдельные файлы: так правки файлов видны внутри контейнера сразу
+      - ./config:/srv/config:ro

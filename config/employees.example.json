@@ -1,0 +1,5 @@
+{
+  "_comment": "Кому писать в Telegram. Слева — e-mail автора заявки, как на карточке Kaiten (\"Автор: Имя (почта)\"), или id пользователя в Kaiten. Справа — @username, t.me/username или chat id (число). Узнать chat id: python -m app.tools chats. Скопируй файл в config/employees.json.",
+  "curator@example.com": "500112345",
+  "colleague@example.com": "@colleague_tg"
+}
